@@ -3,6 +3,7 @@ class Customer {
     _id: string;
     _name: string;
     _address: string;
+    _active: boolean = true;
 
     constructor(id: string, name:string, address:string) {
         this._id = id;
@@ -10,27 +11,16 @@ class Customer {
         this._address = address;
     }
 
-    get id(): string {
-        return this._id;
+    changeName(name: string) {
+        this._name = name
     }
 
-    set id(id: string) {
-        this._id = id;
+    activate() {
+        this._active = true
     }
 
-    get name(): string {
-        return this._id;
+    desactivate() {
+        this._active = false
     }
 
-    set name(name: string) {
-        this._name = name;
-    }
-
-    get address(): string {
-        return this._address;
-    }
-
-    set address(address: string) {
-        this._address = address;
-    }
 }
