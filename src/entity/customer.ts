@@ -13,7 +13,7 @@ export default class Customer {
         this.validate();
     }
 
-    validate() {
+    validate(): void {
         if (this._name.length === 0) {
             throw new Error('Name is required');
         }
@@ -27,12 +27,12 @@ export default class Customer {
         return this._name;
     }
 
-    changeName(name: string) {
+    changeName(name: string): void {
         this._name = name
         this.validate()
     }
 
-    activate() {
+    activate(): void {
         if (this._address === undefined) {
             throw new Error("Address is mandatory to activate a customer")
         }
@@ -47,7 +47,7 @@ export default class Customer {
         this._address = address;
     }
 
-    desactivate() {
+    desactivate(): void {
         this._active = false
     }
 }

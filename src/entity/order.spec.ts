@@ -1,68 +1,53 @@
-import Address from "./address";
-import Customer from "./customer";
+import Order from "./order";
+import OrderItem from "./order_item";
 
-describe("Customer unit tests", () => {
+describe("Order unit tests", () => {
 
 
     it("should throw error when id is empty", () => {
 
         expect(() => {
-            let customer = new Customer("", "John");
-        }).toThrowError("ID is required");
-        
+            let order = new Order("", "123", []);  
+        }).toThrowError('');
     });
 
-    it("should throw error when name is empty", () => {
+    it("should throw error when customerId is empty", () => {
 
         expect(() => {
-            let customer = new Customer("123", "");
-        }).toThrowError("Name is required");
-
+            let order = new Order("123", "", []);  
+        }).toThrowError("customerId is required");
     });
 
-    it("should change name", () => {
-
-        let customer = new Customer("123", "John");
-        
-        customer.changeName("Jane");
-
-        expect(customer.name).toBe("Jane");
-
-    });
-
-    it("should activate customer", () => {
-
-        const customer = new Customer("123", "John");
-        const address = new Address("Avenida Paulista", 123, "08080890", "São Paulo");
-        customer.Address = address;
-
-        customer.activate();
-
-        expect(customer.isActivate()).toBe(true);
-
-    });
-
-    it("should deactivate customer", () => {
-
-        const customer = new Customer("123", "John");
-        const address = new Address("Avenida Paulista", 123, "08080890", "São Paulo");
-        customer.Address = address;
-
-        customer.desactivate();
-
-        expect(customer.isActivate()).toBe(false);
-
-    });
-
-    it("should throw error when address is undefined when you activate a customer", () => {
+    it("should throw error when items are empty", () => {
 
         expect(() => {
-            
-            const customer = new Customer("123", "John");
-
-            customer.activate();
-
-        }).toThrowError('Address is mandatory to activate a customer');
-
+            let order = new Order("123", "123", []);
+        }).toThrowError("Items are required");
     });
+
+    it("should calculate total ", () => {
+
+        const item1 = new OrderItem("i1", "p1", "Item 1", 100, 2);
+        const item2 = new OrderItem("i2", "p2", "Item 2", 200, 2);
+        const order1 = new Order("o1", "c1", [item1]);
+
+        let total = order1.total();
+
+        expect(total).toBe(200);
+
+        const order2 = new Order("o2", "c2", [item1, item2]);
+
+        total = order2.total();
+
+        expect(total).toBe(600);
+    });
+
+    it("Should throw error if the item quantity is less or equal 0", () => {
+
+        expect(() => {
+            const item = new OrderItem("11", "p1", "Item 1", 100, 0);
+            const order = new Order("o1", "c1", [item]);
+        }).toThrowError("Quantity must be greater than zero");
+    });
+
 });
