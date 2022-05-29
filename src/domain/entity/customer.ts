@@ -36,6 +36,10 @@ export default class Customer {
         return this._rewardPoints;
     }
 
+    get address(): Address {
+        return this._address;
+    }
+
     changeName(name: string): void {
         this._name = name
         this.validate()

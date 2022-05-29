@@ -1,9 +1,9 @@
 export default class Address {
 
-    _street: string;
-    _number: number;
-    _zipCode: string;
-    _city: string;
+    private _street: string;
+    private _number: number;
+    private _zipCode: string;
+    private _city: string;
 
     constructor(street: string, number: number, zipCode: string, city: string) {
         this._street = street;
@@ -29,6 +29,22 @@ export default class Address {
         if (this._zipCode.length === 0) {
             throw new Error('Zip Code is required');
         }
+    }
+
+    get street(): string {
+        return this._street;
+    }
+
+    get number(): number {
+        return this._number
+    }
+
+    get zipCode(): string {
+        return this._zipCode;
+    }
+
+    get city(): string {
+        return this._city;
     }
 
     toString(): string  {
