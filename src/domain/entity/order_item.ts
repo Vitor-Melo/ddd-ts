@@ -22,6 +22,10 @@ export default class OrderItem {
         return this._name;
     }
 
+    get productId(): string {
+        return this._productId;
+    }
+
     get price(): number {
         return this._price * this._quantity;
     }

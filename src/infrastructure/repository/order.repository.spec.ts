@@ -9,6 +9,7 @@ import OrderItemModel from '../db/sequelize/model/order-item.model';
 import OrderModel from '../db/sequelize/model/order.model';
 import ProductModel from '../db/sequelize/model/product.model';
 import CustomerRepository from './customer.repository';
+import OrderRepository from './order.repository';
 import ProductRepository from './product.repository';
 
 describe("Order repository test", () => {
@@ -69,8 +70,9 @@ describe("Order repository test", () => {
                     id: orderItem.id,
                     name: orderItem.name,
                     price: orderItem.price,
+                    product_id: orderItem.productId,
                     quantity: orderItem.quantity,
-                    order_id: "123"
+                    order_id: order.id
                 }
             ]
         });
