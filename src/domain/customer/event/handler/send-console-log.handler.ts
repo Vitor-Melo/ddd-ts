@@ -1,5 +1,5 @@
-import EventHandlerInterface from "../../@shared/event-handler.interface";
-import eventInterface from "../../@shared/event.interface";
+import EventHandlerInterface from "../../../@shared/event/event-handler.interface";
+import eventInterface from "../../../@shared/event/event.interface";
 import ChangeAddressEvent from "../change-address-event";
 
 export default class SendConsoleLogHandler implements EventHandlerInterface<ChangeAddressEvent> {

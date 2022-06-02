@@ -1,12 +1,12 @@
-import Address from "../../entity/address";
-import Customer from "../../entity/customer";
-import ChangeAddressEvent from "../customer/change-address-event";
-import CustomerCreatedEvent from "../customer/customer-created-event";
-import SendConsoleLogHandler from "../customer/handler/send-console-log.handler";
-import SendConsoleLog1Handler from "../customer/handler/send-console-log1.handler";
-import SendConsoleLog2Handler from "../customer/handler/send-console-log2.handler";
-import SendEmailWhenProductIsCreatedHandler from "../product/handler/send-email-when-product-is-created.handler";
-import ProductCreatedEvent from "../product/product-created-event";
+import Customer from "../../customer/entity/customer";
+import ChangeAddressEvent from "../../customer/event/change-address-event";
+import CustomerCreatedEvent from "../../customer/event/customer-created-event";
+import SendConsoleLogHandler from "../../customer/event/handler/send-console-log.handler";
+import SendConsoleLog1Handler from "../../customer/event/handler/send-console-log1.handler";
+import SendConsoleLog2Handler from "../../customer/event/handler/send-console-log2.handler";
+import Address from "../../customer/value-object/address";
+import SendEmailWhenProductIsCreatedHandler from "../../product/event/handler/send-email-when-product-is-created.handler";
+import ProductCreatedEvent from "../../product/event/product-created-event";
 import EventDispatcher from "./event-dispatcher";
 
 describe("Domain events tests", () => {
