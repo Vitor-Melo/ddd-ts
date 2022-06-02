@@ -1,4 +1,5 @@
 import CustomerCreatedEvent from "../customer/customer-created-event";
+import SendConsoleLogHandler from "../customer/handler/send-console-log.handler";
 import SendConsoleLog1Handler from "../customer/handler/send-console-log1.handler";
 import SendConsoleLog2Handler from "../customer/handler/send-console-log2.handler";
 import SendEmailWhenProductIsCreatedHandler from "../product/handler/send-email-when-product-is-created.handler";
@@ -93,5 +94,18 @@ describe("Domain events tests", () => {
         expect(spyEventHandler1).toHaveBeenCalled();
         expect(spyEventHandler2).toHaveBeenCalled();
     })
+
+    it("should notity send console log event handler when changed address", () => {
+
+        const eventDispatcher = new EventDispatcher();
+        const eventHandler = new SendConsoleLogHandler();
+        const spyEventHandler = jest.spyOn(eventHandler, "handle");
+
+        eventDispatcher.register("ChangeAdddressEvent", eventHandler);
+        
+        expect(eventDispatcher.getEventHandlers["ChangeAdddressEvent"][0]).toMatchObject(eventHandler);
+
+        
+    });
 
 });
