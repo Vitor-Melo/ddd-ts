@@ -1,3 +1,6 @@
+import Address from "../../entity/address";
+import Customer from "../../entity/customer";
+import ChangeAddressEvent from "../customer/change-address-event";
 import CustomerCreatedEvent from "../customer/customer-created-event";
 import SendConsoleLogHandler from "../customer/handler/send-console-log.handler";
 import SendConsoleLog1Handler from "../customer/handler/send-console-log1.handler";
@@ -101,11 +104,22 @@ describe("Domain events tests", () => {
         const eventHandler = new SendConsoleLogHandler();
         const spyEventHandler = jest.spyOn(eventHandler, "handle");
 
-        eventDispatcher.register("ChangeAdddressEvent", eventHandler);
-        
-        expect(eventDispatcher.getEventHandlers["ChangeAdddressEvent"][0]).toMatchObject(eventHandler);
+        eventDispatcher.register("ChangeAddressEvent", eventHandler);
 
+        const customer = new Customer("123", "Vitor");
+        const address = new Address("Street 1 ", 1, "ZipCode 1", "City 1");
+        customer.changeAddress(address);
+
+        const changeAddressEvent = new ChangeAddressEvent({
+            id: customer.id,
+            name: customer.name,
+            address: customer.address
+        });
+
+        eventDispatcher.notify(changeAddressEvent);
         
+        expect(eventDispatcher.getEventHandlers["ChangeAddressEvent"][0]).toMatchObject(eventHandler);
+        expect(spyEventHandler).toHaveBeenCalled();
     });
 
 });

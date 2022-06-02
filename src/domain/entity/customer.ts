@@ -1,3 +1,4 @@
+import EventDispatcher from "../event/@shared/event-dispatcher";
 import Address from "./address";
 
 export default class Customer {
@@ -57,6 +58,10 @@ export default class Customer {
     }
 
     set Address(address: Address) {
+        this._address = address;
+    }
+
+    changeAddress(address: Address): void {
         this._address = address;
     }
 
