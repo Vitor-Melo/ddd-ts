@@ -3,6 +3,7 @@ import Customer from "../../../domain/customer/entity/customer";
 import Address from "../../../domain/customer/value-object/address";
 import CustomerModel from "../../../infrastructure/customer/repository/sequelize/customer.model";
 import CustomerRepository from "../../../infrastructure/customer/repository/sequelize/customer.repository";
+import FindCustomerUseCase from "./find.customer.usecase";
 
 describe("Test find customer use case", () => {
 
@@ -14,10 +15,10 @@ describe("Test find customer use case", () => {
             dialect: "sqlite",
             storage: ":memory",
             logging: false,
-            sync: {force: true }
+            sync: { force: true }
         }); 
 
-        await sequelize.addModels([CustomerModel]);
+        sequelize.addModels([CustomerModel]);
         await sequelize.sync();
     }); 
 
@@ -51,7 +52,7 @@ describe("Test find customer use case", () => {
             }
         }
 
-        const result = usecase.execute(input);
+        const result = await usecase.execute(input);
 
         expect(result).toEqual(output);
     });
