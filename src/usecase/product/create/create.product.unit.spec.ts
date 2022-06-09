@@ -16,11 +16,16 @@ const mockRepository = () => {
 
 describe("Unit test create product use case", () => {
 
-    it("should create a product", async() => {
+    it("should create a product", async () => {
         const productRepostory = mockRepository();
         const productUseCase = new CreateProductUseCase(productRepostory);
 
-        const output = productUseCase.execute(input);
+        const output = await productUseCase.execute(input);
 
+        expect(output).toEqual({
+            id: expect.any(String),
+            name: input.name,
+            price: input.price
+        });
     })
 });
