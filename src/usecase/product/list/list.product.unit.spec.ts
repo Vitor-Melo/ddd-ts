@@ -18,8 +18,8 @@ const mockRepository = () => {
     return {
         create: jest.fn(),
         find: jest.fn(),
-        findAll: jest.fn().mockRejectedValue([product1, product2]),
-        update: jest.fn()
+        update: jest.fn(),
+        findAll: jest.fn().mockReturnValue(Promise.resolve([product1, product2]))
     }
 }
 
