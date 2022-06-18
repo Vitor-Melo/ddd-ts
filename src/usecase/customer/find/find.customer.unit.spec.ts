@@ -9,7 +9,6 @@ describe("Test find customer use case", () => {
 
     let sequelize: Sequelize;
 
-
     beforeEach(async () => {
         sequelize = new Sequelize({
             dialect: "sqlite",
@@ -25,7 +24,6 @@ describe("Test find customer use case", () => {
     afterEach(async () => {
         await sequelize.close();
     });
-
 
     it("should find a customer", async () => {
         const customerRepository = new CustomerRepository();
