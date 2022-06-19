@@ -4,7 +4,6 @@ import Address from "../value-object/address";
 
 export default class Customer extends Entity {
 
-    private _id: string;
     private _name: string;
     private _address!: Address;
     private _active: boolean = false;
@@ -25,20 +24,16 @@ export default class Customer extends Entity {
         if (this._name.length === 0) {
             this.notification.addError({
                 context: "customer",
-                message: "ID is required"
+                message: "Name is required"
             });
         }
 
-        if (this.id.length === 0) {
+        if (this._id.length === 0) {
             this.notification.addError({
                 context: "customer",
-                message: "Name is required"
+                message: "ID is required"
             })
         }
-    }
-
-    get id(): string {
-        return this._id;
     }
 
     get name(): string {
