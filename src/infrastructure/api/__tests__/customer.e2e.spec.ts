@@ -84,6 +84,13 @@ describe("E2E test for customer", () => {
         const customer2 = listResponse.body.customers[1];
         expect(customer2.name).toBe("Jame");
         expect(customer2.address.street).toBe("Street 2");
+    
+        const listResponseXML = await request(app)
+        .get("/customer")
+        .set("Accept", "application/xml")
+        .send();
+
+        expect(listResponseXML.status).toBe(200);
     });
 
 });
